@@ -36,7 +36,7 @@ The `check_ceph_daemons.py` script was implemented as a **cron job** running eve
 
 ```bash
 $ cat /etc/cron.d/check_ceph_daemons
-*/5 * * * * root /srv/widerplanet/wp-script/check_ceph_daemons.py
+*/5 * * * * root /srv/cron-script/check_ceph_daemons.py
 ```
 
 ### How It Works
