@@ -7,25 +7,25 @@ This is a curated collection of scripts and playbooks I developed to tackle vari
 ## 📂 Script Highlights
 
 ### 🔧 **System Administration**
-- **`motd-secure.sh`**  
+- **`bash/motd-secure.sh`**  
   Disables system MOTD, secures related configurations, and cleans up unnecessary messages.
-- **`set-umask-to-all.sh`**  
+- **`bash/set-umask-to-all.sh`**  
   Globally enforces `umask 022` for all users to maintain consistent file permissions.
 
 ### 🌐 **Network & API**
-- **`pause_prtg.py`**  
+- **`python/pause_prtg.py`**  
   Pauses or resumes PRTG devices through API integration, based on hostname.
-- **`ipmi-sel-clean.sh`**  
+- **`bash/ipmi-sel-clean.sh`**  
   Clears IPMI SEL logs and syncs system clocks to maintain hardware health.
 
 ### 🛠️ **DevOps & Automation**
-- **`update-ca-certificates.yml`**  
+- **`ansible/update-ca-certificates.yml`**  
   Ansible tasks for updating CA certificates, addressing issues like Comodo AddTrust expiration.
-- **`check_ceph_daemons.py`**  
+- **`python/check_ceph_daemons.py`**  
   Monitors and restarts unhealthy Ceph daemons automatically to ensure cluster stability.
 
 ### 📊 **High-Performance Operations**
-- **`s3-log-structure-update.sh`**  
+- **`bash/s3-log-structure-update.sh`**  
   Processes and restructures S3 log file paths in parallel, enabling ingestion of massive log datasets.
   - **THREAD variable to specify maximum threads**
     - Default is set to 5. If the number of files is 5 or less, the number of threads is automatically reduced.

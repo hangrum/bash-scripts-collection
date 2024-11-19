@@ -1,0 +1,52 @@
+# Sectigo AddTrust External CA Root Expiring May 30, 2020
+# https://support.sectigo.com/articles/Knowledge/Sectigo-AddTrust-External-CA-Root-Expiring-May-30-2020
+- hosts: '{{ target }}'
+  vars: 
+    crt_file: 'sectigo_DV_ChainCA2.crt'
+  tasks:
+  - name: DNS Query & Find CA Files Location
+    shell: curl -v https://google.com 2>&1 | awk '/CAfile/ { print $3 }'
+    register: ca_location
+    failed_when: ca_location.stdout == ''
+  
+  - name: EOL Ubuntu update certificates Packages
+    apt:
+      name:
+        - ca-certificates
+        - apt-transport-https
+        - libgnutls30
+      state: latest
+    when: ansible_distribution_version == '16.04'
+  
+  - name: Copy a Sectigo crt file
+    copy:
+      src: "{{ crt_file }}"
+      dest: "/tmp/{{ crt_file }}"
+    when: ca_location.stdout != ''
+  
+  - name: Append the CRT file to the CA file
+    shell: "cat /tmp/{{ crt_file }} >> {{ ca_location.stdout }}"
+    when: ca_location.stdout != ''
+    become: true
+  
+  - name: Verify the presence of a JVM certificate
+    stat:
+      path: /etc/ssl/certs/java/cacerts
+    register: jvm_ca_location
+  
+  - name: Debug JVM certificate location
+    debug:
+      var: jvm_ca_location
+  
+  - name: Check if certificate is already imported
+    shell: "keytool -list -cacerts -alias sectigocaroot -storepass changeit"
+    ignore_errors: true
+    register: is_imported
+    when: jvm_ca_location.stat.exists
+    become: true
+  
+  - name: Import the CRT file into the JVM keystore
+    shell: "keytool -import -cacerts -file /tmp/{{ crt_file }} -alias 'sectigocaroot' -storepass changeit -noprompt"
+    when: jvm_ca_location.stat.exists and is_imported.rc != 0
+    become: true
+
