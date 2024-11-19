@@ -22,7 +22,7 @@ This is a curated collection of scripts and playbooks I developed to tackle vari
 - **`ansible/update-ca-certificates.yml`**  
   Ansible tasks for updating CA certificates, addressing issues like Comodo AddTrust expiration.
 - **`python/check_ceph_daemons.py`**  
-  Monitors and restarts unhealthy Ceph daemons automatically to ensure cluster stability.
+  [README.md](./python/README.md) Monitors and restarts unhealthy Ceph daemons automatically to ensure cluster stability.
 
 ### 📊 **High-Performance Operations**
 - **`bash/s3-log-structure-update.sh`**  
