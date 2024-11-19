@@ -1,6 +1,6 @@
-# Bash & Automation Scripts
+# System Automation Scripts
 
-This is a collection of scripts and playbooks I developed to tackle various system management, automation, and troubleshooting tasks. Each script is designed to simplify workflows, improve efficiency, and handle large-scale operations when necessary.
+This is a curated collection of scripts and playbooks I developed to tackle various system management, automation, and troubleshooting tasks. Each script is designed to simplify workflows, improve efficiency, and handle large-scale operations when necessary.
 
 ---
 
