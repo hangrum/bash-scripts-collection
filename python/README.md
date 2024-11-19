@@ -28,6 +28,7 @@ NAME                           HOST         PORTS    STATUS         REFRESHED  A
 rgw.hangrum.myceph-m-01.hfswvz  myceph-m-01  *:18080  running (5h)      8m ago   7M     257M        -  17.2.5   cc65afd6173a  d6a2ec4f6b8b
 rgw.hangrum.myceph-m-02.zvuvsr  myceph-m-02  *:18080  running (3d)     35s ago   7M     415M        -  17.2.5   cc65afd6173a  a08ca3c1cb0e
 rgw.hangrum.myceph-m-03.obvccd  myceph-m-03  *:18080  running (12d)    35s ago   7M     293M        -  17.2.5   cc65afd6173a  a847ccda1d72
+```
 
 ### Solution
 
@@ -36,7 +37,7 @@ The `check_ceph_daemons.py` script was implemented as a **cron job** running eve
 ```bash
 $ cat /etc/cron.d/check_ceph_daemons
 */5 * * * * root /srv/widerplanet/wp-script/check_ceph_daemons.py
-
+```
 
 ### How It Works
 
@@ -83,4 +84,4 @@ $ cat /etc/cron.d/check_ceph_daemons
 3. **Example Restart Command**:
    ```bash
    ceph orch daemon restart rgw.hangrum.myceph-m-01.hfswvz
-
+   ```
