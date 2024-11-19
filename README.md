@@ -27,6 +27,19 @@ This is a curated collection of scripts and playbooks I developed to tackle vari
 ### 📊 **High-Performance Operations**
 - **`s3-log-structure-update.sh`**  
   Processes and restructures S3 log file paths in parallel, enabling ingestion of massive log datasets.
+  - **THREAD variable to specify maximum threads**
+    - Default is set to 5. If the number of files is 5 or less, the number of threads is automatically reduced.
+    - For more than 5 files, the file list is evenly distributed across a maximum of 5 threads.
+  - **Generate and distribute file lists from S3**
+    - Retrieves the full list of target files (`wp-images-access-log202`) from S3 and splits them into smaller lists using `split` for parallel processing.
+  - **Copy to the new structure, validate, and delete original files**
+    - Copies files to the new directory structure, validates the process, and deletes the original files once verification is complete.
+
+#### Key Variables
+- **BUCKET**: S3 bucket address.
+- **THREAD**: Maximum number of executable threads.
+- **FILE_DIR**: Temporary directory to store the S3 file list.
+- **LOG_DIR**: Directory for storing log files.
 
 ---
 
